@@ -1,0 +1,121 @@
+/* Reset básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* Container principal ajustado para telas de celular */
+.container {
+    width: 100%;
+    max-width: 480px; /* Largura ideal para mobile */
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Banner */
+.banner-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Conteúdo */
+.links-section {
+    padding: 30px 20px;
+    text-align: center;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço restante */
+}
+
+.links-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.links-section p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Lista de Botões */
+.button-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Espaçamento entre os botões */
+}
+
+/* Estilo Geral dos Botões */
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.2s, cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+}
+
+.btn i {
+    font-size: 22px;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+}
+
+.btn span {
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Cores específicas para cada botão */
+.btn-cinema {
+    background: linear-gradient(135deg, #e50914, #b20610); /* Vermelho estilo cinema */
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366, #128C7E); /* Verde WhatsApp */
+}
+
+.btn-hotel {
+    background: linear-gradient(135deg, #0077b6, #0096c7); /* Azul Hotelaria */
+}
+
+/* Efeito de clique/toque (Feedback visual para o usuário) */
+.btn:active {
+    transform: scale(0.96);
+}
+
+/* Rodapé */
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
