@@ -10,6 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             botao.style.opacity = "1";
             botao.style.transform = "translateY(0)";
-        }, index * 300); // 150ms de atraso entre cada botão
+        }, index * 150); // 150ms de atraso entre cada botão
     });
-});
+})
