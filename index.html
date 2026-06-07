@@ -3,166 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>P53 - Painel de Notícias & Comunicações</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <title>Cine & Hospedagem - Links Úteis</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Importando a fonte Amatic SC do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- O seu estilo vem logo abaixo -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="painel-container" id="cobel-painel-principal">
-        <div class="topo">
-            <div class="lado-esquerdo">
-                <div class="logo-area">
-                    <img src="imagens/logopetrobras.png" alt="Logo Petrobras" class="logo-petrobras">
-                </div>
+
+    <div class="container">
+        <header class="banner-container">
+            <img src="imagens/painelinteracao.jpg" alt="Banner de Boas-Vindas" class="main-banner">
+        </header>
+
+        <main class="links-section">
+            <h2>Sejam bem-vindos a P-53</h2>
+            <p>Escolha uma das opções abaixo para participar:</p>
+
+            <div class="button-list">
+
+                <a href="https://cobelp53.github.io/dashboard/" target="_blank" class="btn btn-cobel">
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>Painel de informações</span>
+                </a>
+                <a href="https://forms.gle/qwL6BojTyCedSP1E7" target="_blank" class="btn btn-cinema">
+                    <i class="fa-solid fa-film"></i>
+                    <span>Votação do Cine Pipoca</span>
+                </a>
+
+                <a href="https://chat.whatsapp.com/FXOIekYQT9AJjZYmLCZxVd?s=hd&p=i&ilr=4" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Fale com a Comissão</span>
+                </a>
+
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=QWJvW1ea5EuOUB36cueaV7-gZajsPXNCm1V3cA01PN9UMzBIWkJMRTFRVExMUUVIODdWRUNNNzI3TiQlQCN0PWcu&origin=QRCode" target="_blank" class="btn btn-hotel">
+                    <i class="fa-solid fa-hotel"></i>
+                    <span>Avaliação da Hotelaria</span>
+                </a>
+                
             </div>
-
-            <div class="centro-titulo">
-                <div class="titulo-container-flex">
-                    <img src="imagens/logocobel_reduzido.png" alt="Logo Cobel" class="logo-cobel-topo">
-                    <div class="titulo-texto">
-                        <h1>COBEL - P53</h1>
-                        <h2>COMISSÃO DE BEM ESTAR E LAZER</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lado-direito">
-                <div class="previsao-container" id="previsao-widget">
-                    <div class="item-clima">
-                        <span class="dia-nome" id="data-hoje">--</span>
-                        <span class="icone" id="icone-atual">--</span>
-                        <span class="temps" id="temp-atual">--°</span>
-                    </div>
-                    <div class="previsao-semana" id="previsao-semana" style="display:flex; gap:8px;"></div>
-                </div>
-            </div>
-        </div>
-
-        <main class="conteudo-grid">
-            <section class="col-programacao">
-                <h2>📅 PROGRAMAÇÃO DE BORDO</h2>
-                <div class="programacao-container">
-                    <div class="prog-bloco dia">
-                        <h3>🍽️ Refeitório</h3>
-                        <ul id="lista-programacao-dia" class="lista-programacao"></ul>
-                    </div>
-                    <div class="prog-bloco semana">
-                        <h3>🗓️ Esta Semana</h3>
-                        <ul id="lista-programacao-semana" class="lista-programacao"></ul>
-                    </div>
-                </div>
-            </section>
-
-            <section class="col-destaques">
-                <h2>🖼️ DESTAQUES</h2>
-                <div class="carrossel-wrapper">
-                    <div id="carrossel-imagens" class="carrossel"></div>
-                    <button class="btn-carrossel anterior" onclick="mudarSlideManual(-1)">&#10094;</button>
-                    <button class="btn-carrossel proximo" onclick="mudarSlideManual(1)">&#10095;</button>
-                </div>
-                <div id="legenda-imagem" class="legenda"></div>
-            </section>
-
-            <section class="col-votacao">
-                    <h2 class="titulo-interacao">
-                        <span class="texto-pc">💬 PARTICIPE DA COBEL</span>
-                        <span class="texto-mobile">📈 RESULTADO DA</span>
-                    </h2>
-                    <div class="qr-bloco esconder-mobile">
-                        <h3>Use o QR Code e fique por dentro</h3>
-                        <p class="instrucao"></p>
-                        <div class="qr-container" id="qr-interacao"></div>
-                    </div> 
-                    
-                    <div class="grafico-bloco">
-                        <h3 class="titulo-interno-grafico">📈 Votação do filme</h3>
-                        
-                        <!-- O container agora guarda estritamente o gráfico e seus estados -->
-                        <div class="grafico-container">
-                            <canvas id="pieChart"></canvas>
-                            <div id="grafico-loading" class="grafico-loading">Carregando...</div>
-                            <div id="grafico-error" class="grafico-error" style="display:none;"></div>
-                        </div>
-
-                        <!-- 🚀 O BOTÃO FOI MOVIDO PARA CÁ (Fora do container do gráfico) -->
-                        <p style="text-align: center; margin-top: 15px;">
-                            <a href="#" id="link-votacao" target="_blank" style="text-decoration: none; color: inherit;">Use o QR Code acima para votar!</a>
-                        </p>
-                    </div>
-                </section>
         </main>
 
-        <footer class="ticker-container">
-            <div class="ticker-wrapper">
-                <div class="ticker-content">
-                    <span id="ticker-msg" class="ticker-text">Sejam bem-vindos à Plataforma P53, boa estadia! | Portal desenvolvido pela Automação de P53 © 2026 </span>
-                </div>
-                <div class="ticker-hora" onclick="cobelAbrirAcesso()" style="cursor: pointer;" title="Área Restrita Admin">
-                    <span id="data-hora-ticker">--/--/---- --:--</span>
-                </div>
-            </div>
+        <footer>
+            <p>© 2026 Comissão de Bem Estar e Lazer da P-53</p>
         </footer>
-    </div>
-
-    <!-- POPUP DE SENHA -->
-    <div id="cobel-popup-senha" class="cobel-modal-sobreposicao">
-        <div class="cobel-modal-caixa">
-            <h3>🔐 Acesso Restrito</h3>
-            <p>Insira a senha de administração COBEL:</p>
-            <input type="password" id="cobel-campo-senha" placeholder="Senha" onkeydown="if(event.key === 'Enter') cobelVerificarSenha()">
-            <div class="cobel-modal-botoes">
-                <button class="cobel-btn-cancelar" onclick="cobelFecharAcesso()">Cancelar</button>
-                <button class="cobel-btn-confirmar" onclick="cobelVerificarSenha()">Entrar</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- TELA CHEIA DA ADMINISTRAÇÃO -->
-    <div id="cobel-tela-admin" class="cobel-admin-container">
-        <div class="cobel-admin-barra-topo">
-            <div class="cobel-admin-titulos">
-                <h2>🛠️ Painel de Controle - COBEL P53</h2>
-                <p>Gerenciamento Dinâmico do Dashboard</p>
-            </div>
-            <button class="cobel-btn-fechar-admin" onclick="cobelSairAdmin()">Sair da Administração ❌</button>
-        </div>
-
-        <div class="cobel-admin-conteudo">
-            <!-- NOVO CARD: EDITOR DE LEGENDAS -->
-            <div class="cobel-admin-card-acoes" style="margin-bottom: 20px;">
-                <h3>🖼️ Editar Legendas do Carrossel (Teste)</h3>
-                <p style="margin-bottom: 15px; color: #64748b;">Modifique os textos abaixo e clique em salvar para atualizar o painel em tempo real.</p>
-                
-                <div style="margin-bottom: 12px;">
-                    <label style="display:block; font-weight:bold; margin-bottom:5px;">Legenda da Foto 1:</label>
-                    <input type="text" id="edit-legenda-1" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:4px;">
-                </div>
-                <div style="margin-bottom: 12px;">
-                    <label style="display:block; font-weight:bold; margin-bottom:5px;">Legenda da Foto 2:</label>
-                    <input type="text" id="edit-legenda-2" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:4px;">
-                </div>
-                <div style="margin-bottom: 20px;">
-                    <label style="display:block; font-weight:bold; margin-bottom:5px;">Legenda da Foto 3:</label>
-                    <input type="text" id="edit-legenda-3" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:4px;">
-                </div>
-
-                <button id="cobel-btn-salvar-legendas" class="cobel-btn-salvar" onclick="cobelSalvarLegendas()" style="background:#16a34a; color:white; border:none; padding:12px 24px; font-weight:bold; border-radius:6px; cursor:pointer;">💾 Salvar Legendas</button>
-                <span id="cobel-status-salvar" class="cobel-status-mensagem"></span>
-            </div>
-
-            <!-- CARD CONTROLE DE VOTAÇÃO -->
-            <div class="cobel-admin-card-acoes" style="margin-bottom: 20px;">
-                <h3>📊 Controle da Votação do Cinema</h3>
-                <button id="cobel-btn-limpar" class="cobel-btn-acao-perigo" onclick="cobelLimparPlanilhaVotos()">🗑️ Limpar Todos os Votos Atuais</button>
-                <span id="cobel-status-acao" class="cobel-status-mensagem"></span>
-            </div>
-
-            <div class="cobel-admin-card-logs">
-                <h3>📋 Logs de Atividade</h3>
-                <div id="cobel-status-log" class="cobel-log-quadrado"></div>
-            </div>
-        </div>
     </div>
 
     <script src="script.js"></script>
